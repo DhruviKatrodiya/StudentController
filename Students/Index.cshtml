@@ -1,0 +1,114 @@
+﻿@model IEnumerable<MVCEntityFrameAppCS.Models.Student>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+@using (Html.BeginForm("Index", "Students", FormMethod.Post))
+{
+<p>
+
+    Search Option: @Html.TextBox("search")
+
+    @Html.RadioButton("option", "StudentId", true) <b>StudentId</b>
+    @Html.RadioButton("option", "StudentName") <b> StudentName </b>
+    @Html.RadioButton("option", "City") <b> City </b>
+    @Html.RadioButton("option", "Gender") <b> Gender </b>
+    @Html.RadioButton("option", "PhoneNumber") <b> PhoneNumber </b>
+    @Html.RadioButton("option", "Grade") <b> Grade </b><br />
+
+    <input type="submit" value="Search" />
+
+</p>
+        }
+
+    
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("StudentName", "Index", new { Sorting_Order = ViewBag.SortingName })
+            </th>
+
+            <th>
+                @Html.ActionLink("BirthDate", "Index", new { Sorting_Order = ViewBag.SortingDate })
+            </th>
+            <th>
+                @Html.ActionLink("City", "Index", new { Sorting_Order = ViewBag.SortingName })
+            </th>
+            <th>
+                @Html.ActionLink("Gender", "Index", new { Sorting_Order = ViewBag.SortingName })
+            </th>
+            <th>
+                @Html.ActionLink("PhoneNumber", "Index", new { Sorting_Order = ViewBag.SortingName })
+            </th>
+            <th>
+                @Html.ActionLink("Grade", "Index", new { Sorting_Order = ViewBag.SortingName })
+            </th>
+            
+
+            @*<th>
+            @Html.DisplayNameFor(model => model.StudentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CourseName)
+        </th>*@
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.CourseName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.StudentId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
+                </td>
+            </tr>
+        }
+
+    </table>
